@@ -9,17 +9,13 @@ html {
   display: flex;
   align-items: flex-start;
   gap: 2em;
-}
-
-@media (max-width: 768px) {
-  .conteudo {
-    flex-direction: column;
-  }
+  width: 60%;
 }
 
 .principal {
   flex-grow: 1;
   flex-basis: auto;
+  width: 72rem;
   min-width: 600px;
   padding: 4em 2em 2em;
   box-sizing: border-box;
@@ -27,6 +23,15 @@ html {
   background: #c5965f;
   border-radius: 10px;
   gap: 2em;
+}
+
+@media (max-width: 768px) {
+  .conteudo {
+    flex-direction: column;
+  }
+  .principal {
+    width: 32rem;
+  }
 }
 
 .mochila {
