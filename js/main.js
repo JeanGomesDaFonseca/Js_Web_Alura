@@ -12,14 +12,23 @@ form.addEventListener("submit", (e) => {
   const name = e.target.elements["name"];
   const much = e.target.elements["much"];
 
+  const houver = itens.find((event) => event.name === name.value);
+
   const currentItem = {
     name: name.value,
     much: much.value,
   };
 
-  createElement(currentItem);
+  if (houver) {
+    currentItem.id = houver.id;
+    updateElement(currentItem);
+  } else {
+    currentItem.id = itens.length;
 
-  itens.push(currentItem);
+    createElement(currentItem);
+
+    itens.push(currentItem);
+  }
 
   localStorage.setItem("itens", JSON.stringify(itens));
 
@@ -33,9 +42,14 @@ function createElement(item) {
 
   const numberItem = document.createElement("strong");
   numberItem.innerHTML = item.much;
+  numberItem.dataset.id = item.id;
   newItem.appendChild(numberItem);
 
   newItem.innerHTML += item.name;
 
   list.appendChild(newItem);
+}
+
+function updateElement(item) {
+  document.querySelector("[data-id='" + item.id + "']").innerHTML = item.much;
 }
