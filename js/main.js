@@ -19,16 +19,29 @@ form.addEventListener("submit", (e) => {
     much: much.value,
   };
 
-  if (houver) {
-    currentItem.id = houver.id;
-    updateElement(currentItem);
-  } else {
-    currentItem.id = itens.length;
+  // "if & else" refatorado usando ternario
 
-    createElement(currentItem);
+  houver
+    ? ((currentItem.id = houver.id),
+      updateElement(currentItem),
+      (itens[houver.id] = currentItem))
+    : ((currentItem.id = itens.length),
+      createElement(currentItem),
+      itens.push(currentItem));
 
-    itens.push(currentItem);
-  }
+  // if (houver) {
+  //   currentItem.id = houver.id;
+
+  //   updateElement(currentItem);
+
+  //   itens[houver.id] = currentItem;
+  // } else {
+  //   currentItem.id = itens.length;
+
+  //   createElement(currentItem);
+
+  //   itens.push(currentItem);
+  // }
 
   localStorage.setItem("itens", JSON.stringify(itens));
 
