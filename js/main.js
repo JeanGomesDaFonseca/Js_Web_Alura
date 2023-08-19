@@ -60,9 +60,26 @@ function createElement(item) {
 
   newItem.innerHTML += item.name;
 
+  newItem.appendChild(buttonDelete());
+
   list.appendChild(newItem);
 }
 
 function updateElement(item) {
   document.querySelector("[data-id='" + item.id + "']").innerHTML = item.much;
+}
+
+function buttonDelete() {
+  const elementButton = document.createElement("button");
+  elementButton.innerText = "X";
+
+  elementButton.addEventListener("click", function () {
+    deleteElement(this.parentNode);
+  });
+
+  return elementButton;
+}
+
+function deleteElement(tag) {
+  tag.remove();
 }
